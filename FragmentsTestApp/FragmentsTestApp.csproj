@@ -49,9 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DetailsActivity.cs" />
+    <Compile Include="DetailsFragment.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shakespeare.cs" />
     <Compile Include="TitlesFragment.cs" />
   </ItemGroup>
   <ItemGroup>

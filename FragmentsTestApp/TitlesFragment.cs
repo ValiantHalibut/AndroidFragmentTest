@@ -15,35 +15,27 @@ namespace FragmentsTestApp
 {
     public class TitlesFragment : ListFragment
     {
-        public override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
-
-            // Create your fragment here
-        }
-
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
-            return base.OnCreateView(inflater, container, savedInstanceState);
-        }
+        private int _currentPlayId;
+        private bool _isDualPane;
 
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
+
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(Activity, Android.Resource.Layout.SimpleListItemChecked, Shakespeare.Titles);
             ListAdapter = adapter;
-            if(savedInstanceState != null)
+
+            View detailsFrame = Activity.FindViewById<View>(Resource.Id.details);
+            _isDualPane = detailsFrame != null && detailsFrame.Visibility == ViewStates.Visible;
+
+            if (savedInstanceState != null)
             {
                 _currentPlayId = savedInstanceState.GetInt("current_play_id", 0);
             }
-            View detailsFrame = Activity.FindViewById<View>(Resource.Id.details);
-            _isDualPane = detailsFrame != null && detailsFrame.Visibility == ViewStates.Visible;
+
             if (_isDualPane)
             {
-                ListView.ChoiceMode = (int)ChoiceMode.Single;
+                ListView.ChoiceMode = ChoiceMode.Single;
                 ShowDetails(_currentPlayId);
             }
         }
@@ -51,6 +43,12 @@ namespace FragmentsTestApp
         public override void OnListItemClick(ListView l, View v, int position, long id)
         {
             ShowDetails(position);
+        }
+
+        public override void OnSaveInstanceState(Bundle outState)
+        {
+            base.OnSaveInstanceState(outState);
+            outState.PutInt("current_play_id", _currentPlayId);
         }
 
         private void ShowDetails(int playId)
@@ -67,7 +65,7 @@ namespace FragmentsTestApp
 
                     FragmentTransaction ft = FragmentManager.BeginTransaction();
                     ft.Replace(Resource.Id.details, details);
-                    ft.SetTransition(FragmentTransaction.TransitFragmentFade);
+                    ft.SetTransition(FragmentTransit.FragmentFade);
                     ft.Commit();
                 }
             }
