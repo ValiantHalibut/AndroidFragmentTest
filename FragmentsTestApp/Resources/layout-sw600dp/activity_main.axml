@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <fragment
-        android:name=""
+        class="FragmentsTestApp.TitlesFragment"
         android:layout_weight="1"
         android:layout_width="0px"
         android:layout_height="match_parent"

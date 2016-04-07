@@ -18,6 +18,18 @@ namespace FragmentsTestApp
         private int _currentPlayId;
         private bool _isDualPane;
 
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetHasOptionsMenu(true);
+        }
+
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            inflater.Inflate(Resource.Menu.TitleMenu, menu);
+            base.OnCreateOptionsMenu(menu, inflater);
+        }
+
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);

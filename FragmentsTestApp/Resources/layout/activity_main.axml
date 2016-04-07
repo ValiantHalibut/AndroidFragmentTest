@@ -6,6 +6,7 @@
     android:minWidth="25px"
     android:minHeight="25px">
     <fragment
+        class="FragmentsTestApp.TitlesFragment"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/titles_fragment" />

@@ -60,11 +60,14 @@ namespace FragmentsTestApp
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050001
-			public const int details = 2131034113;
+			// aapt resource value: 0x7f060002
+			public const int add_vehicle = 2131099650;
 			
-			// aapt resource value: 0x7f050000
-			public const int titles_fragment = 2131034112;
+			// aapt resource value: 0x7f060001
+			public const int details = 2131099649;
+			
+			// aapt resource value: 0x7f060000
+			public const int titles_fragment = 2131099648;
 			
 			static Id()
 			{
@@ -92,6 +95,22 @@ namespace FragmentsTestApp
 			}
 		}
 		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int TitleMenu = 2131034112;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
+			{
+			}
+		}
+		
 		public partial class String
 		{
 			
@@ -100,6 +119,9 @@ namespace FragmentsTestApp
 			
 			// aapt resource value: 0x7f040000
 			public const int Hello = 2130968576;
+			
+			// aapt resource value: 0x7f040002
+			public const int menu_option = 2130968578;
 			
 			static String()
 			{
