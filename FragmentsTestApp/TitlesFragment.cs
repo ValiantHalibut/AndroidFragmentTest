@@ -34,7 +34,9 @@ namespace FragmentsTestApp
         {
             base.OnActivityCreated(savedInstanceState);
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(Activity, Android.Resource.Layout.SimpleListItemChecked, Shakespeare.Titles);
+            //ArrayAdapter<String> adapter = new ArrayAdapter<String>(Activity, Android.Resource.Layout.SimpleListItemChecked, Shakespeare.Titles);
+            String[] optionsString = { "Option 1", "Option 2" };
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(Activity, Android.Resource.Layout.SimpleListItemSingleChoice, optionsString);
             ListAdapter = adapter;
 
             View detailsFrame = Activity.FindViewById<View>(Resource.Id.details);
@@ -70,6 +72,28 @@ namespace FragmentsTestApp
             {
                 ListView.SetItemChecked(playId, true);
 
+                VideoFragment videoFragment = FragmentManager.FindFragmentById(Resource.Id.details) as VideoFragment;
+                if(videoFragment == null)
+                {
+                    videoFragment = new VideoFragment();
+                    FragmentTransaction ft = FragmentManager.BeginTransaction();
+                    ft.Replace(Resource.Id.details, videoFragment);
+                    ft.SetTransition(FragmentTransit.FragmentFade);
+                    ft.Commit();
+                }
+            }
+            else
+            {
+                Intent intent = new Intent();
+                intent.SetClass(Activity, typeof(VideoActivity));
+                intent.PutExtra("current_play_id", playId);
+                StartActivity(intent);
+            }
+            /*
+            if (_isDualPane)
+            {
+                ListView.SetItemChecked(playId, true);
+
                 DetailsFragment details = FragmentManager.FindFragmentById(Resource.Id.details) as DetailsFragment;
                 if(details == null || details.ShownPlayId != playId)
                 {
@@ -88,6 +112,7 @@ namespace FragmentsTestApp
                 intent.PutExtra("current_play_id", playId);
                 StartActivity(intent);
             }
+            */
         }
     }
 }
