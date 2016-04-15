@@ -1,14 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
 using Android.Views;
-using Android.Widget;
 using Android.Util;
 
 namespace FragmentsTestApp
@@ -54,13 +46,15 @@ namespace FragmentsTestApp
             }
             else
             {
-                if(width < (float)height * mRatioWidth / (float)mRatioHeight)
+                if (width < (float)height * mRatioWidth / (float)mRatioHeight)
                 {
                     SetMeasuredDimension(width, width * mRatioHeight / mRatioWidth);
-                } else
+                }
+                else
                 {
                     SetMeasuredDimension(height * mRatioWidth / mRatioHeight, height);
                 }
             }
+        }
     }
 }
